@@ -12,11 +12,11 @@ int easyfind(const T & haystack, const int & needle)
 
 	if (result == haystack.end())
 	{
-		std::cout << "Pas trouve mon frere" << std::endl;
+		throw std::exception();
 	}
 
 
-	return 800800;
+	return *result;
 }
 
 int main ()
@@ -28,7 +28,17 @@ int main ()
 	vector0.push_back(4);
 	vector0.push_back(28000000);
 
-	std::cout << easyfind(vector0, 45) << std::endl;
+	try
+	{
+		std::cout << easyfind(vector0, 4) << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() <<  " : not found." << std::endl;
+	}
+	
+
+
 
 	return 0;
 }
