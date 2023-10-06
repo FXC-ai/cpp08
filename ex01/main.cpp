@@ -138,7 +138,9 @@ int main()
 	span8.addNumbers(randThousandNumbs.begin(), randThousandNumbs.end());
 	std::cout << "Shortest span = " << span8.shortestSpan() <<std::endl;
 	std::cout << " Longest span = " << span8.longestSpan() <<std::endl;
+	std::cout << std::endl;
 
+	std::cout << "TEST 9 : subject :"<<std::endl;
 	Span sp = Span(5);
 	sp.addNumber(6);
 	sp.addNumber(3);
@@ -147,10 +149,6 @@ int main()
 	sp.addNumber(11);
 	std::cout << sp.shortestSpan() << std::endl;
 	std::cout << sp.longestSpan() << std::endl;
-
-	for_each(sp.get_datas().begin(), sp.get_datas().end(), Display());
-	std::cout << std::endl;
-
 
 	return 0;
 }
