@@ -1,56 +1,6 @@
-#include <iostream>
-#include <algorithm>
-#include <stack>
+#include "MutantStack.hpp"
+#include "MutantStack.tpp"
 #include <list>
-
-template <typename T>
-class MutantStack : public std::stack<T>
-{
-	// private :
-	// 	std::stack<T> _mutStack;
-
-	public :
-	 	MutantStack<T>();
-		MutantStack<T>(const MutantStack<T> & src);
-	 	~MutantStack<T>(){};
-		MutantStack<T> & operator=(const MutantStack<T> & rhs);
-
-		typedef typename std::deque<T>::iterator iterator;
-
-		iterator begin()
-		{
-			return this->c.begin();
-		}
-
-		iterator end()
-		{
-			return this->c.end();
-		}
-
-		std::deque<T> get_c() const
-		{
-			return this->c;
-		}
-};
-
-template <typename T>
-MutantStack<T>::MutantStack(){};
-
-template <typename T>
-MutantStack<T>::MutantStack(const MutantStack & src)
-{
-	this->c = src.get_c();
-}
-
-template <typename T>
-MutantStack<T> & MutantStack<T>::operator=(const MutantStack & rhs)
-{
-	if (rhs != *this)
-	{
-		this->c = rhs.get_c();
-	}
-	return *this;
-}
 
 class Display
 {
@@ -68,6 +18,7 @@ int main()
 	{
 		std::cout << "TEST 0 : Default Constructor" <<std::endl;
 		MutantStack<int> mutant0;
+		std::cout << std::endl;
 
 		std::cout << "TEST 1 : Inherited member functions" <<std::endl;
 		mutant0.push(1);
@@ -78,24 +29,27 @@ int main()
 		std::cout << "mutant0.top() = " << mutant0.top() << std::endl;
 		mutant0.pop();
 		std::cout << "mutant0.top() = " << mutant0.top() << std::endl;
-		
+		std::cout << std::endl;
+
 		std::cout << "TEST 2 : Iterator of MutantStack" <<std::endl;
 		for_each(mutant0.begin(), mutant0.end(), Display());
+		std::cout << "TEST 2(bis) : Iterator of MutantStack" <<std::endl;
+		MutantStack<int>::iterator it = mutant0.begin();
+		std::cout << "*(it + 1) = " << *(it + 1) <<std::endl;
+		std::cout << std::endl;
 
 		std::cout << "TEST 3 : Operator = overload" <<std::endl;
 		MutantStack<int>mutant1;
 		mutant1 = mutant0;
 		for_each(mutant1.begin(), mutant1.end(), Display());
-
+		std::cout << std::endl;
 
 		std::cout << "TEST 4 : Copy constructor" <<std::endl;
 		MutantStack<int>mutant2(mutant1);
 		for_each(mutant2.begin(), mutant2.end(), Display());
-
-
+		std::cout << std::endl;
 	}
 	
-
 	std::cout << "----- Subject main -----" <<std::endl;
 	{
 		MutantStack<int> mstack;
@@ -121,7 +75,6 @@ int main()
 		std::stack<int> s(mstack);
 	}
 
-
 	std::cout << "----- Subject main (std::list) -----" <<std::endl;
 	{
 		std::list<int> mstack;
@@ -146,8 +99,6 @@ int main()
 		}
 		std::list<int> s(mstack);
 	}
-
-
 
 	return 0;
 }
