@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 
-#define N 50
+#define N 5
 #define M 1000000
 
 class Display
@@ -33,7 +33,7 @@ int main()
 
 	std::cout << "vector<int> randomNumbers : ";
 	std::vector<int> randomNumbers(N);
-	GiveRandNumb giveRandN(N);
+	GiveRandNumb giveRandN(100);
 	std::generate(randomNumbers.begin(), randomNumbers.end(), giveRandN);
 	for_each(randomNumbers.begin(), randomNumbers.end(), Display());
 	std::cout << std::endl;
@@ -56,12 +56,12 @@ int main()
 	Span span1(5);
 	try
 	{
-		span1.addNumber(48);
-		span1.addNumber(49);
-		span1.addNumber(50);
+		span1.addNumber(-49);
+		span1.addNumber(-13);
+		span1.addNumber(0);
 		span1.addNumber(51);
-		span1.addNumber(52);
-		span1.addNumber(53);
+		span1.addNumber(1003);
+		span1.addNumber(9);
 	}
 	catch(const std::exception& e)
 	{
@@ -70,6 +70,8 @@ int main()
 	std::cout << "span1 : ";
 	for_each(span1.get_datas().begin(), span1.get_datas().end(), Display());
 	std::cout << std::endl;
+	std::cout << "Shortest span = " << span1.shortestSpan() <<std::endl;
+	std::cout << "Longest  span = " << span1.longestSpan() <<std::endl;
 
 	std::cout << std::endl;
 	std::cout << "TEST 2 : copy constructor Span(span1):"<<std::endl;

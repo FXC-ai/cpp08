@@ -79,8 +79,18 @@ int Span::shortestSpan()
 	{
 		throw SpanInsufficientSize();
 	}
-	sort(this->_datas.begin(), this->_datas.end());
-	return this->_datas[1] - this->_datas[0];
+
+	std::vector<int> copy_datas(this->_datas);
+	std::vector<int> sorted_dif(copy_datas.size() - 1);
+
+	sort(copy_datas.begin(), copy_datas.end());
+
+	for (unsigned long i = 0; i < (copy_datas.size()-1) ; ++i)
+	{
+		sorted_dif[i] = copy_datas[i + 1] - copy_datas[i];
+	}
+
+	return *(min_element(sorted_dif.begin(), sorted_dif.end()));
 }
 
 int Span::min()
