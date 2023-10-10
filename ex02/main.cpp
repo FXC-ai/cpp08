@@ -14,7 +14,6 @@ class Display
 
 int main()
 {
-	std::cout << "----- Tests for defense  -----" <<std::endl;
 	{
 		std::cout << "TEST 0 : Default Constructor" <<std::endl;
 		MutantStack<int> mutant0;
